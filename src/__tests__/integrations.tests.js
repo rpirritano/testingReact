@@ -23,6 +23,7 @@ afterEach(() => {
  // Expect to find a list of comments
  //tell JEST to hold on for the setTimeout, use 'done'
  //tell wrapped to update components
+ //replace setTimeout with moxios's wait to refactor code
 it('can fetch a list of comments and display them', (done) => {
   const wrapped = mount(
     <Root>
@@ -32,12 +33,12 @@ it('can fetch a list of comments and display them', (done) => {
 
   wrapped.find('.fetch-comments').simulate('click');
 
-  setTimeout(() => {
+  moxios.wait(() => {
     wrapped.update();
 
     expect(wrapped.find('li').length).toEqual(2);
     done();
     wrapped.unmount();
 
-  }, 100);
+  });
 });
