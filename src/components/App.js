@@ -9,11 +9,15 @@ class App extends Component {
   renderButton() {
     if (this.props.auth) {
       return (
-        <button>Sign Out</button>
+        <button onClick={() => this.props.changeAuth(false)}>
+          Sign Out
+        </button>
       );
     } else {
       return (
-        <button>Sign In</button>
+        <button onClick={() => this.props.changeAuth(true)}>
+          Sign In
+        </button>
       );
     }
   }
